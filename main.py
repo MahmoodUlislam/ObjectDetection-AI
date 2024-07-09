@@ -1,16 +1,21 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import argparse
+from src import train, evaluate, inference
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def main():
+    parser = argparse.ArgumentParser(description="Object Detection Project")
+    parser.add_argument('--mode', type=str, required=True, help='train, evaluate, or inference')
+    args = parser.parse_args()
+
+    if args.mode == 'train':
+        train.run()
+    elif args.mode == 'evaluate':
+        evaluate.run()
+    elif args.mode == 'inference':
+        inference.run()
+    else:
+        print("Invalid mode. Choose from 'train', 'evaluate', or 'inference'.")
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
