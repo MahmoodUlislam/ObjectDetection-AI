@@ -4,9 +4,9 @@ import time
 
 import torch
 
-import utils
-from coco_eval import CocoEvaluator
-from coco_utils import get_coco_api_from_dataset
+import src.utils as utils
+from src.coco_eval import CocoEvaluator
+from src.coco_utils import get_coco_api_from_dataset
 
 
 def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq):

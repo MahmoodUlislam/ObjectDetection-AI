@@ -1,10 +1,10 @@
 import torch
 import torchvision
 from torch.utils.data import DataLoader
-from engine import evaluate
-import utils
-from dataset import CustomDataset
-from transforms import get_transform
+from src.engine import evaluate
+import src.utils as utils
+from src.dataset import CustomDataset
+from src.transforms import get_transform
 
 
 def run():
@@ -18,7 +18,7 @@ def run():
     data_loader_test = DataLoader(dataset_test, batch_size=2, shuffle=False, num_workers=4, collate_fn=utils.collate_fn)
 
     # Load the model
-    model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=False)
+    model = torchvision.models.detection.fasterrcnn_resnet50_fpn(weights=False)
     model.load_state_dict(torch.load('models/model.pth'))
     model.eval()
 

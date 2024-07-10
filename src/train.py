@@ -1,10 +1,10 @@
 import torch
 import torchvision
 from torch.utils.data import DataLoader
-from engine import train_one_epoch, evaluate
-import utils
-from dataset import CustomDataset
-from transforms import get_transform
+from src.engine import train_one_epoch, evaluate
+import src.utils as utils
+from src.dataset import CustomDataset
+from src.transforms import get_transform
 
 
 def run():
@@ -25,7 +25,7 @@ def run():
     data_loader_test = DataLoader(dataset_test, batch_size=2, shuffle=False, num_workers=4, collate_fn=utils.collate_fn)
 
     # Model
-    model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
+    model = torchvision.models.detection.fasterrcnn_resnet50_fpn(weights=True)
     num_classes = 2  # 1 class (object) + background
     in_features = model.roi_heads.box_predictor.cls_score.in_features
     model.roi_heads.box_predictor = torchvision.models.detection.faster_rcnn.FastRCNNPredictor(in_features, num_classes)

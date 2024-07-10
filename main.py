@@ -1,5 +1,8 @@
 import argparse
-from src import train, evaluate, inference
+
+from src.train import run as train_run
+from src.evaluate import run as evaluate_run
+from src.inference import run as inference_run
 
 
 def main():
@@ -8,11 +11,11 @@ def main():
     args = parser.parse_args()
 
     if args.mode == 'train':
-        train.run()
+        train_run()
     elif args.mode == 'evaluate':
-        evaluate.run()
+        evaluate_run()
     elif args.mode == 'inference':
-        inference.run()
+        inference_run('assets/apple.jpg')
     else:
         print("Invalid mode. Choose from 'train', 'evaluate', or 'inference'.")
 
